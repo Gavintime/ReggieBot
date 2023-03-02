@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+    <world name="default">
+
+        <!-- sun light source -->
+        <include>
+            <uri>model://sun</uri>
+        </include>
+
+        <!-- flat ground -->
+        <include>
+            <uri>model://ground_plane</uri>
+        </include>
+    </world>
+</sdf>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Colors -->
+  <gazebo reference="chassis">
+    <material>Gazebo/White</material>
+  </gazebo>
+  <gazebo reference="left_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="caster_wheel">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+  <gazebo reference="laser_frame">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- make caster wheel "frictionless" (TODO: for now) -->
+  <gazebo reference="caster_wheel">
+    <mu1 value="0.001" />
+    <mu2 value="0.001" />
+  </gazebo>
+
+
+  <!-- basic diff drive plugin, will be replaced with ros2_control -->
+  <gazebo>
+    <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
+
+      <!-- Wheel info -->
+      <!-- 1 wheel each side -->
+      <num_wheel_pairs>1</num_wheel_pairs>
+      <left_joint>left_wheel_joint</left_joint>
+      <right_joint>right_wheel_joint</right_joint>
+      <!-- The distance from the center of one wheel to the other -->
+      <wheel_separation>${chassis_width + wheel_length}</wheel_separation>
+      <!-- Diameter of the wheels -->
+      <wheel_diameter>${wheel_radius * 2}</wheel_diameter>
+
+      <!-- limits -->
+      <!-- Maximum torque which the wheels can produce, in Nm -->
+      <max_wheel_torque>200</max_wheel_torque>
+      <!-- max Wheel acceleration, in rad/s^2 -->
+      <max_wheel_acceleration>2</max_wheel_acceleration>
+
+
+      <!-- odometry -->
+      <!-- Odometry frame, defaults to `odom` -->
+      <odometry_frame>odom</odometry_frame>
+      <!-- Robot frame to calculate odometry from, defaults to `base_footprint` -->
+      <robot_base_frame>base_link</robot_base_frame>
+      <!-- Odometry source, 0 for ENCODER, 1 for WORLD, defaults to WORLD -->
+      <odometry_source>1</odometry_source>
+      <!-- Set to true to publish transforms for the odometry -->
+      <publish_odom>true</publish_odom>
+      <publish_wheel_tf>true</publish_wheel_tf>
+      <publish_odom_tf>true</publish_odom_tf>
+
+      <!-- misc -->
+      <update_rate>20</update_rate>
+      <!-- <covariance_x></covariance_x> -->
+      <!-- <covariance_y></covariance_y> -->
+      <!-- <covariance_yaw></covariance_yaw> -->
+
+    </plugin>
+  </gazebo>
+
+</robot>
