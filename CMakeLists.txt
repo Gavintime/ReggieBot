@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.8)
 project(reggie_bot)
 
-
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
   set(CMAKE_C_STANDARD 99)
@@ -23,13 +22,13 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 add_executable(reggie src/reggie.cpp)
-target_include_directories(reggie PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-target_compile_features(reggie PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+target_include_directories(
+  reggie PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+                $<INSTALL_INTERFACE:include>)
+# Require C99 and C++17
+target_compile_features(reggie PUBLIC c_std_99 cxx_std_17)
 
-install(TARGETS reggie
-  DESTINATION lib/${PROJECT_NAME})
+install(TARGETS reggie DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -47,7 +46,6 @@ endif()
 # can't do "ros2 launch <pkg_name> <launch_file>" without doing this
 install(
   DIRECTORY config urdf launch worlds
-  DESTINATION share/${PROJECT_NAME}
-)
+  DESTINATION share/${PROJECT_NAME})
 
 ament_package()
