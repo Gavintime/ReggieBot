@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="reggiebot">
 
   <xacro:include filename="reggiebot_core.xacro" />
-  <xacro:include filename="reggiebot_gazebo.xacro" />
+  <xacro:include filename="reggiebot_gazebo_control.xacro" />
   <xacro:include filename="reggiebot_lidar.xacro" />
 
 </robot>

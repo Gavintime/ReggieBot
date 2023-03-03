@@ -1,29 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Colors -->
-  <gazebo reference="chassis">
-    <material>Gazebo/White</material>
-  </gazebo>
-  <gazebo reference="left_wheel">
-    <material>Gazebo/Blue</material>
-  </gazebo>
-  <gazebo reference="right_wheel">
-    <material>Gazebo/Blue</material>
-  </gazebo>
-  <gazebo reference="caster_wheel">
-    <material>Gazebo/Grey</material>
-  </gazebo>
-  <gazebo reference="laser_frame">
-    <material>Gazebo/Black</material>
-  </gazebo>
-
-  <!-- make caster wheel "frictionless" (TODO: for now) -->
-  <gazebo reference="caster_wheel">
-    <mu1 value="0.001" />
-    <mu2 value="0.001" />
-  </gazebo>
-
 
   <!-- basic diff drive plugin, will be replaced with ros2_control -->
   <gazebo>

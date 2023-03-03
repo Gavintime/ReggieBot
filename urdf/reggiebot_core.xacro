@@ -77,6 +77,9 @@
       <origin xyz="${chassis_length/2} 0 ${chassis_height/2}" rpy="0 0 0" />
     </xacro:inertial_box>
   </link>
+  <gazebo reference="chassis">
+    <material>Gazebo/White</material>
+  </gazebo>
 
 
   <!-- LEFT WHEEL LINK -->
@@ -106,6 +109,9 @@
       <origin xyz="0 0 ${wheel_length/2}" rpy="0 0 0" />
     </xacro:inertial_cylinder>
   </link>
+  <gazebo reference="left_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
 
   <!-- RIGHT WHEEL LINK -->
 
@@ -134,6 +140,9 @@
       <origin xyz="0 0 ${wheel_length/2}" rpy="0 0 0" />
     </xacro:inertial_cylinder>
   </link>
+  <gazebo reference="right_wheel">
+    <material>Gazebo/Blue</material>
+  </gazebo>
 
 
   <!-- CASTER WHEEL LINK -->
@@ -162,6 +171,10 @@
       <origin xyz="0 0 ${-wheel_radius+caster_radius}" rpy="0 0 0" />
     </xacro:inertial_sphere>
   </link>
-
-
+  <gazebo reference="caster_wheel">
+    <material>Gazebo/Grey</material>
+    <!-- make caster wheel "frictionless" (TODO: for now) -->
+    <mu1 value="0.001" />
+    <mu2 value="0.001" />
+  </gazebo>
 </robot>

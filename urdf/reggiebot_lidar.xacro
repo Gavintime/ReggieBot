@@ -28,6 +28,9 @@
       <origin xyz="0 0 0" rpy="0 0 0" />
     </xacro:inertial_cylinder>
   </link>
+  <gazebo reference="laser_frame">
+    <material>Gazebo/Black</material>
+  </gazebo>
 
   <!-- gazebo ray sensor with ros plugin -->
   <gazebo reference="laser_frame">
