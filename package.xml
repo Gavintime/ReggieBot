@@ -14,7 +14,18 @@
 
   <exec_depend>ros2launch</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
-  <!-- <exec_depend>gazebo_ros_pkgs</exec_depend> -->
+
+  <!-- ros2_control controllers -->
+  <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+
+  <!-- xbox controls -->
+  <exec_depend>teleop_twist_joy</exec_depend>
+
+  <!-- TODO: move gazebo stuff to it's own pkg -->
+  <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>gazebo_ros_pkgs</exec_depend>
+  <exec_depend>gazebo_ros2_control</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

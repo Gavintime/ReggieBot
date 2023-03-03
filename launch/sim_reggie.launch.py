@@ -5,7 +5,6 @@ from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 
-
 def generate_launch_description():
 
     pkg_path = os.path.join(get_package_share_directory('reggie_bot'))
@@ -29,7 +28,18 @@ def generate_launch_description():
                                    '-entity', 'my_reggiebot'],
                         output='screen')
 
+    # TODO: wait for spawn entity to finish
+    diff_drive_spawner = Node(package='controller_manager',
+                              executable='spawner',
+                              arguments=['diff_cont'])
+
+    joint_broad_spawner = Node(package='controller_manager',
+                              executable='spawner',
+                              arguments=['joint_broad'])
+
     # launch
     return LaunchDescription([rsp_reggie_launch,
                               gazebo_launch,
-                              spawn_entity])
+                              spawn_entity,
+                              diff_drive_spawner,
+                              joint_broad_spawner])

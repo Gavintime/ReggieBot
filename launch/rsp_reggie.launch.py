@@ -14,10 +14,12 @@ def generate_launch_description():
 
     # read in the urdf file
     pkg_path = os.path.join(get_package_share_directory('reggie_bot'))
-    reggiebot_xacro_file = os.path.join(pkg_path, 'urdf', 'reggiebot.urdf.xacro')
+    reggiebot_xacro_file = os.path.join(
+        pkg_path, 'urdf', 'reggiebot.urdf.xacro')
     reggiebot_description = xacro.process_file(reggiebot_xacro_file)
 
     # create robot_state_publisher_node
+    # the controller manager is started via the gazebo plugin in the xacro file
     params = {'robot_description': reggiebot_description.toxml(),
               'use_sim_time': use_sim_time}
     node_robot_state_publisher = Node(
