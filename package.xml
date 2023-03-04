@@ -25,6 +25,12 @@
   <!-- rplidar a1m8 -->
   <exec_depend>rplidar_ros</exec_depend>
 
+  <!-- slam -->
+  <exec_depend>slam_toolbox</exec_depend>
+
+  <!-- rviz -->
+  <exec_depend>rviz</exec_depend>
+
   <!-- TODO: move gazebo stuff to it's own pkg -->
   <exec_depend>diff_drive_controller</exec_depend>
   <exec_depend>gazebo_ros_pkgs</exec_depend>
