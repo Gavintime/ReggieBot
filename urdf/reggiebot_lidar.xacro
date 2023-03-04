@@ -36,7 +36,7 @@
   <gazebo reference="laser_frame">
     <sensor name="laser" type="gpu_ray">
       <pose>0 0 0 0 0 0</pose>
-      <visualize>true</visualize>
+      <visualize>false</visualize>
       <output_rate>5.5</output_rate>
       <ray>
         <scan>
