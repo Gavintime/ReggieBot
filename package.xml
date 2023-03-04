@@ -19,8 +19,11 @@
   <exec_depend>diff_drive_controller</exec_depend>
   <exec_depend>joint_state_broadcaster</exec_depend>
 
-  <!-- xbox controls -->
+  <!-- xbox joypad controls -->
   <exec_depend>teleop_twist_joy</exec_depend>
+
+  <!-- rplidar a1m8 -->
+  <exec_depend>rplidar_ros</exec_depend>
 
   <!-- TODO: move gazebo stuff to it's own pkg -->
   <exec_depend>diff_drive_controller</exec_depend>
