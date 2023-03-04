@@ -13,6 +13,7 @@ controller_manager:
 # differential drive wheel controller
 diff_cont:
   ros__parameters:
+    use_sim_time: true
     # must be a double
     publish_rate: 30.0
     # based on if input has a timestamp or not
@@ -23,7 +24,7 @@ diff_cont:
     # TRANSFORM INFO
     base_frame_id: base_link
     enable_odom_tf: true
-    odom_frame_id: /odom
+    odom_frame_id: odom
 
     # WHEEL INFO
     left_wheel_names: ["left_wheel_joint"]
@@ -36,26 +37,32 @@ diff_cont:
     # right_wheel_radius_multiplier: x
 
     # LINEAR LIMITS
-    # linear.x.has_velocity_limits: false
-    # linear.x.has_acceleration_limits: false
-    # linear.x.has_jerk_limits: false
-    # linear.x.min_velocity: NAN
-    # linear.x.max_velocity: NAN
-    # linear.x.min_acceleration: NAN
-    # linear.x.max_acceleration: NAN
-    # linear.x.min_jerk: NAN
-    # linear.x.max_jerk: NAN
+    # linear:
+    #   x:
+    #     has_velocity_limits: false
+    #     has_acceleration_limits: false
+    #     has_jerk_limits: false
+    #     min_velocity: NAN
+    #     max_velocity: NAN
+    #     min_acceleration: NAN
+    #     max_acceleration: NAN
+    #     min_jerk: NAN
+    #     max_jerk: NAN
 
     # ANGULAR LIMITS
-    # angular.z.has_velocity_limits: false
-    # angular.z.has_acceleration_limits: false
-    # angular.z.has_jerk_limits: false
-    # angular.z.min_velocity: NAN
-    # angular.z.max_velocity: NAN
-    # angular.z.min_acceleration: NAN
-    # angular.z.max_acceleration: NAN
-    # angular.z.min_jerk: NAN
-    # angular.z.max_jerk: NAN
+    # angular:
+    #   z:
+    #   has_velocity_limits: false
+    #   has_acceleration_limits: false
+    #   has_jerk_limits: false
+    #   min_velocity: NAN
+    #   max_velocity: NAN
+    #   min_acceleration: NAN
+    #   max_acceleration: NAN
+    #   min_jerk: NAN
+    #   max_jerk: NAN
+
 # wheel joint broadcaster controller
-# joint_broad:
-#   ros__parameters:
+joint_broad:
+  ros__parameters:
+    use_sim_time: true
