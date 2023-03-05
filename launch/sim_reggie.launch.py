@@ -11,10 +11,20 @@ from launch_ros.actions import Node
 def generate_launch_description():
 
     pkg_path = os.path.join(get_package_share_directory('reggie_bot'))
+    twist_mux_params_file = os.path.join(pkg_path, 'config', 'twist_mux.yaml')
     gazebo_params_file = os.path.join(pkg_path, 'config', 'gazebo_params.yaml')
     slam_params_file = os.path.join(pkg_path, 'config',
                                     'mapper_params_online_async.yaml')
     rviz_config_file = os.path.join(pkg_path, 'config', 'reggiebot.rviz')
+
+    # multiplexes joypad, keyboard, and nav cmd_vels with a priority system
+    twist_mux_node = Node(package='twist_mux',
+                          executable='twist_mux',
+                          output='screen',
+                          remappings={
+                              ('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')},
+                          parameters=[twist_mux_params_file]
+                          )
 
     # reggie's rsp launch file
     rsp_reggie_launch = IncludeLaunchDescription(
@@ -52,6 +62,7 @@ def generate_launch_description():
                                     on_exit=[joint_broad_spawner]))
 
     # slam toolbox online async launch file
+    # TODO: delay slam_toolbox until gazebo has finished loading
     slam_toolbox_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(get_package_share_directory(
             'slam_toolbox'), 'launch', 'online_async_launch.py')),
@@ -63,7 +74,8 @@ def generate_launch_description():
                       name='rviz2', arguments={'-d': rviz_config_file}.items())
 
     # launch
-    return LaunchDescription([rsp_reggie_launch,
+    return LaunchDescription([twist_mux_node,
+                              rsp_reggie_launch,
                               gazebo_launch,
                               spawn_entity,
                               delayed_diff_drive_spawner,

@@ -22,6 +22,9 @@
   <!-- xbox joypad controls -->
   <exec_depend>teleop_twist_joy</exec_depend>
 
+  <!-- cmd_vel twist multiplexer -->
+  <exec_depend>twist_mux</exec_depend>
+
   <!-- rplidar a1m8 -->
   <exec_depend>rplidar_ros</exec_depend>
 

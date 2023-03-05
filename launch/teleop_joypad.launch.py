@@ -5,6 +5,7 @@ from launch.substitutions import LaunchConfiguration, TextSubstitution
 from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
 
+# todo: log what the twist topic name is
 
 def generate_launch_description():
     joy_config = LaunchConfiguration('joy_config')
@@ -32,7 +33,7 @@ def generate_launch_description():
             TextSubstitution(text=os.path.join(
                 get_package_share_directory('teleop_twist_joy'), 'config', '')),
             joy_config, TextSubstitution(text='.config.yaml')]),
-        DeclareLaunchArgument('cmd_vel', default_value='/cmd_vel'),
+        DeclareLaunchArgument('cmd_vel', default_value='/joy_vel'),
 
         joy_node,
         teleop_twist_joy_node,
