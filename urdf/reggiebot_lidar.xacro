@@ -6,8 +6,8 @@
   <joint name="laser_joint" type="fixed">
     <parent link="chassis" />
     <child link="laser_frame" />
-    <!-- top center of chassis -->
-    <origin xyz="${chassis_length/2} 0 ${chassis_height+0.0275}" rpy="0 0 0" />
+    <!-- centered on top of chassis, slightly hovering -->
+    <origin xyz="0 0 ${chassis_height/2+0.0275}" rpy="0 0 0" />
   </joint>
 
   <link name="laser_frame">
@@ -52,6 +52,7 @@
           <max>12</max>
           <resolution>0.1</resolution>
         </range>
+        <!-- TODO: config noise -->
         <!-- <noise>
           <type>gaussian</type>
           <mean>0.0</mean>
