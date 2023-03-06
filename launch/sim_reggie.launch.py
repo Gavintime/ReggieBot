@@ -23,7 +23,8 @@ def generate_launch_description():
                           output='screen',
                           remappings={
                               ('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')},
-                          parameters=[twist_mux_params_file]
+                          parameters=[twist_mux_params_file,
+                                      {'use_sim_time': True}]
                           )
 
     # reggie's rsp launch file
@@ -47,6 +48,7 @@ def generate_launch_description():
                         output='screen')
 
     # delay starting controllers until the robot has been spawned in gazebo
+    # TODO: fuse odom sensor data using robot_localization
     diff_drive_spawner = Node(package='controller_manager',
                               executable='spawner',
                               arguments=['diff_cont'])
@@ -63,6 +65,10 @@ def generate_launch_description():
 
     # slam toolbox online async launch file
     # TODO: delay slam_toolbox until gazebo has finished loading
+    # TODO: add option to just localize
+    # (localization_launch.py in the slam_toolbox pkg,
+    # it uses localization_slam_toolbox_node)
+    # TODO: alternatively use map_server + amcl
     slam_toolbox_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(get_package_share_directory(
             'slam_toolbox'), 'launch', 'online_async_launch.py')),
