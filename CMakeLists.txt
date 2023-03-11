@@ -30,6 +30,12 @@ target_compile_features(reggie PUBLIC c_std_99 cxx_std_17)
 
 install(TARGETS reggie DESTINATION lib/${PROJECT_NAME})
 
+# add config, urdf, launch, and worlds files to install location
+# can't do "ros2 launch <pkg_name> <launch_file>" without doing this
+install(
+  DIRECTORY config urdf launch worlds
+  DESTINATION share/${PROJECT_NAME})
+  
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights
@@ -42,10 +48,5 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# add config, urdf, launch, and worlds files to install location
-# can't do "ros2 launch <pkg_name> <launch_file>" without doing this
-install(
-  DIRECTORY config urdf launch worlds
-  DESTINATION share/${PROJECT_NAME})
 
 ament_package()
