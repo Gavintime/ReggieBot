@@ -18,24 +18,24 @@ def generate_launch_description():
     rviz_config_file = os.path.join(pkg_path, 'config', 'reggiebot.rviz')
 
     # multiplexes joypad, keyboard, and nav cmd_vels with a priority system
-    twist_mux_node = Node(package='twist_mux',
-                          executable='twist_mux',
-                          output='screen',
-                          remappings={
-                              ('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')},
-                          parameters=[twist_mux_params_file,
-                                      {'use_sim_time': True}]
-                          )
+    twist_mux = Node(package='twist_mux',
+                     executable='twist_mux',
+                     output='screen',
+                     remappings={
+                         ('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')},
+                     parameters=[twist_mux_params_file,
+                                 {'use_sim_time': True}]
+                     )
 
     # reggie's rsp launch file
-    rsp_reggie_launch = IncludeLaunchDescription(
+    rsp_reggie = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             pkg_path, 'launch', 'rsp_reggie.launch.py')]),
         launch_arguments={'use_sim_time': 'true'}.items(),
     )
 
     # launch gazebo sim
-    gazebo_launch = IncludeLaunchDescription(
+    gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')]),
         launch_arguments={'params_file': gazebo_params_file}.items()
@@ -80,9 +80,9 @@ def generate_launch_description():
                       name='rviz2', arguments={'-d': rviz_config_file}.items())
 
     # launch
-    return LaunchDescription([twist_mux_node,
-                              rsp_reggie_launch,
-                              gazebo_launch,
+    return LaunchDescription([twist_mux,
+                              rsp_reggie,
+                              gazebo,
                               spawn_entity,
                               delayed_diff_drive_spawner,
                               delayed_joint_broad_spawner,

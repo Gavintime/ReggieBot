@@ -22,7 +22,7 @@ def generate_launch_description():
     # the controller manager is started via the gazebo plugin in the xacro file
     params = {'robot_description': reggiebot_description.toxml(),
               'use_sim_time': use_sim_time}
-    node_robot_state_publisher = Node(
+    robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
@@ -33,4 +33,4 @@ def generate_launch_description():
         DeclareLaunchArgument('use_sim_time',
                               default_value='false',
                               description='Use sim time if true'),
-        node_robot_state_publisher])
+        robot_state_publisher])
