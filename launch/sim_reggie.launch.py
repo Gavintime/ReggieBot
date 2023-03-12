@@ -63,6 +63,13 @@ def generate_launch_description():
         event_handler=OnProcessExit(target_action=spawn_entity,
                                     on_exit=[joint_broad_spawner]))
 
+    imu_broad_spawner = Node(package='controller_manager',
+                             executable='spawner',
+                             arguments=['imu_broad'])
+    delayed_imu_broad_spawner = RegisterEventHandler(
+        event_handler=OnProcessExit(target_action=spawn_entity,
+                                    on_exit=[imu_broad_spawner]))
+
     # slam toolbox online async launch file
     # TODO: delay slam_toolbox until gazebo has finished loading
     # TODO: add option to just localize
@@ -86,5 +93,6 @@ def generate_launch_description():
                               spawn_entity,
                               delayed_diff_drive_spawner,
                               delayed_joint_broad_spawner,
+                              delayed_imu_broad_spawner,
                               slam_toolbox_launch,
                               rviz2_node])
