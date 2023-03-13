@@ -26,7 +26,7 @@ diff_cont:
 
     # TRANSFORM INFO
     base_frame_id: base_link
-    enable_odom_tf: true
+    enable_odom_tf: false # because robot_localization provides this
     odom_frame_id: odom
 
     # WHEEL INFO
@@ -87,6 +87,7 @@ imu_broad:
     sensor_name: "imu_sensor"
     frame_id: "imu"
 
+    # TODO: account for imu not being perfectly centered with base_link?
     # Static (___) covariance. Row major about x, y, z axes
     # static_covariance_orientation:
     #   [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
