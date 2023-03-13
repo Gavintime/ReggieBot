@@ -13,7 +13,7 @@ slam_toolbox:
     map_frame: map
     base_frame: base_footprint
     scan_topic: /scan
-    mode: localization # or mapping
+    mode: localization # or mapping (if new area)
 
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
@@ -32,13 +32,14 @@ slam_toolbox:
     transform_timeout: 0.2
     tf_buffer_duration: 30.
     stack_size_to_use: 40000000 #// program needs a larger stack size to serialize large maps
-    enable_interactive_mode: true
+    # enable if mapping new
+    enable_interactive_mode: false
 
     # General Parameters
     use_scan_matching: true
     use_scan_barycenter: true
-    minimum_travel_distance: 0.2 # default for both is 0.5
-    minimum_travel_heading: 0.2
+    minimum_travel_distance: 0.0 # default for both is 0.5
+    minimum_travel_heading: 0.0
     scan_buffer_size: 10
     scan_buffer_maximum_scan_distance: 10.0
     link_match_minimum_response_fine: 0.1
