@@ -1,7 +1,7 @@
 controller_manager:
   ros__parameters:
     # this is sent to each controller automatically
-    update_rate: 30
+    update_rate: 50
     use_sim_time: true
 
     diff_cont:
@@ -18,7 +18,7 @@ diff_cont:
   ros__parameters:
     use_sim_time: true
     # must be a double
-    publish_rate: 30.0
+    publish_rate: 50.0
     # based on if input has a timestamp or not
     use_stamped_vel: false
     # position_feedback: x

@@ -1,7 +1,7 @@
 ekf_filter_node:
   ros__parameters:
     # in Hz, at which the filter will output a position estimate. Defaults to 30.
-    frequency: 30.0
+    frequency: 50.0
     # If true, no 3D information will be used in state estimate. Defaults to false.
     two_d_mode: true
     # Defaults to false.
