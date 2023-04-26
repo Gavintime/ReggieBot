@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+  <!-- Gazebo hardware interface -->
+  <ros2_control name="ReggiebotWheelInterface" type="system">
+    <hardware>
+      <plugin>reggiebot_motors/ReggiebotWheelInterface</plugin>
+    </hardware>
+
+    <!-- left wheel interface -->
+    <joint name="left_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-255</param>
+        <param name="max">255</param>
+      </command_interface>
+      <state_interface name="velocity" />
+    </joint>
+
+    <!-- right wheel interface -->
+    <joint name="right_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-255</param>
+        <param name="max">255</param>
+      </command_interface>
+      <state_interface name="velocity" />
+    </joint>
+
+  </ros2_control>
+
+</robot>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="reggiebot">
+
+  <xacro:include filename="reggiebot_core.xacro" />
+  <!-- <xacro:include filename="reggiebot_gazebo_simple_control.xacro" /> -->
+  <!-- <xacro:include filename="reggiebot_lidar.xacro" /> -->
+  <xacro:include filename="reggiebot_physical_ros2_control.xacro" />
+
+</robot>
