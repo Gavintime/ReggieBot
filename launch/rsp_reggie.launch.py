@@ -13,7 +13,7 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
 
     # read in the urdf file
-    pkg_path = os.path.join(get_package_share_directory('reggie_bot'))
+    pkg_path = os.path.join(get_package_share_directory('reggiebot'))
     reggiebot_xacro_file = os.path.join(
         pkg_path, 'urdf', 'reggiebot.urdf.xacro')
     reggiebot_description = xacro.process_file(reggiebot_xacro_file)

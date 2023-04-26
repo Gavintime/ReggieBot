@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(reggie_bot)
+project(reggiebot)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -35,7 +35,7 @@ install(TARGETS reggie DESTINATION lib/${PROJECT_NAME})
 install(
   DIRECTORY config urdf launch worlds
   DESTINATION share/${PROJECT_NAME})
-  
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

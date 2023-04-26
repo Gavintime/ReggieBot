@@ -10,7 +10,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    pkg_path = os.path.join(get_package_share_directory('reggie_bot'))
+    pkg_path = os.path.join(get_package_share_directory('reggiebot'))
     twist_mux_params_file = os.path.join(pkg_path, 'config', 'twist_mux.yaml')
     gazebo_params_file = os.path.join(pkg_path, 'config', 'gazebo_params.yaml')
     ekf_params_file = os.path.join(pkg_path, 'config', 'ekf.yaml')

@@ -52,7 +52,7 @@
     <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
       <!-- <robot_param>robot_description</robot_param> -->
       <!-- <robot_param_node>robot_state_publisher</robot_param_node> -->
-      <parameters>$(find reggie_bot)/config/controller_params.yaml</parameters>
+      <parameters>$(find reggiebot)/config/controller_params.yaml</parameters>
     </plugin>
   </gazebo>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>reggie_bot</name>
+  <name>reggiebot</name>
   <version>0.0.0</version>
   <description>An autonomous indoor 2 wheel differential drive robot.</description>
   <maintainer email="none@none.com">Gavin</maintainer>
