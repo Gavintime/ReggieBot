@@ -6,6 +6,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import RegisterEventHandler
 from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
+import xacro
 
 
 def generate_launch_description():
@@ -18,8 +19,9 @@ def generate_launch_description():
     rviz_config_file = os.path.join(pkg_path, 'config', 'reggiebot.rviz')
     reggiebot_xacro_file = os.path.join(
         pkg_path, 'urdf', 'reggiebot_physical.urdf.xacro')
-    controler_params_file = os.path.join(
-        pkg_path, 'config', 'controller params.yaml')
+    reggiebot_description = xacro.process_file(reggiebot_xacro_file)
+    controller_params_file = os.path.join(
+        pkg_path, 'config', 'controller_params.yaml')
 
     # multiplexes joypad, keyboard, and nav cmd_vels with a priority system
     twist_mux = Node(
@@ -33,8 +35,8 @@ def generate_launch_description():
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[{"robot_description": reggiebot_xacro_file},
-                    controler_params_file],
+        parameters=[{"robot_description": reggiebot_description},
+                    controller_params_file],
         output="both",
     )
 
@@ -71,13 +73,13 @@ def generate_launch_description():
     # (localization_launch.py in the slam_toolbox pkg,
     # it uses localization_slam_toolbox_node)
     # TODO: alternatively use map_server + amcl
-    # slam_toolbox = Node(
-    #     parameters=[slam_params_file, {'use_sim_time': False}],
-    #     package='slam_toolbox',
-    #     executable='async_slam_toolbox_node',
-    #     name='slam_toolbox',
-    #     output='screen'
-    # )
+    slam_toolbox = Node(
+        parameters=[slam_params_file, {'use_sim_time': False}],
+        package='slam_toolbox',
+        executable='async_slam_toolbox_node',
+        name='slam_toolbox',
+        output='screen'
+    )
 
     rviz2 = Node(
         package='rviz2',
@@ -95,5 +97,5 @@ def generate_launch_description():
          joint_broad_spawner,
          #  slam_toolbox,
          robot_localization,
-         rviz2
+        #  rviz2
          ])
