@@ -15,7 +15,7 @@ def generate_launch_description():
     # read in the urdf file
     pkg_path = os.path.join(get_package_share_directory('reggiebot'))
     reggiebot_xacro_file = os.path.join(
-        pkg_path, 'urdf', 'reggiebot.urdf.xacro')
+        pkg_path, 'urdf', 'reggiebot_gazebo.urdf.xacro')
     reggiebot_description = xacro.process_file(reggiebot_xacro_file)
 
     # create robot_state_publisher_node
