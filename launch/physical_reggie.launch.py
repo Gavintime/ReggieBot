@@ -35,7 +35,7 @@ def generate_launch_description():
     control_node = Node(
         package="controller_manager",
         executable="ros2_control_node",
-        parameters=[{"robot_description": reggiebot_description},
+        parameters=[{"robot_description": reggiebot_description.toxml()},
                     controller_params_file],
         output="both",
     )
@@ -51,13 +51,22 @@ def generate_launch_description():
     diff_drive_spawner = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['diff_cont']
+        arguments=['diff_cont', "--controller-manager", "/controller_manager"]
     )
 
     joint_broad_spawner = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['joint_broad']
+        arguments=['joint_broad', "--controller-manager",
+                   "/controller_manager"]
+    )
+
+    # Delay start of diff_drive_spawner after `joint_broad_spawner`
+    delay_diff_drive_spawner_after_joint_broad_spawner = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=joint_broad_spawner,
+            on_exit=[diff_drive_spawner],
+        )
     )
 
     robot_localization = Node(
@@ -93,9 +102,9 @@ def generate_launch_description():
         [twist_mux,
          control_node,
          rsp_reggie,
-         diff_drive_spawner,
          joint_broad_spawner,
+         delay_diff_drive_spawner_after_joint_broad_spawner,
          #  slam_toolbox,
          robot_localization,
-        #  rviz2
+         #  rviz2
          ])
